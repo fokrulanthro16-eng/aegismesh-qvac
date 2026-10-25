@@ -41,7 +41,7 @@ SCENES = [
 ]
 
 VOICE = "en-US-ChristopherNeural"
-AUDIO_DIR = os.path.join(os.path.dirname(__file__), "..", "audio")
+AUDIO_DIR = os.path.join(os.path.dirname(__file__), "audio")
 
 async def generate_scene_audio(scene):
     out_path = os.path.join(AUDIO_DIR, f"{scene['id']}.mp3")

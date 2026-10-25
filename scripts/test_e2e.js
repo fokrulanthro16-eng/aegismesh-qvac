@@ -4,14 +4,14 @@
  */
 
 const assert = require('assert');
-const { qvacEngine } = require('./src/qvac_engine/qvac_auditor');
-const { wdkVault } = require('./src/wdk_vault/wdk_signer');
-const { htlcEngine } = require('./src/wdk_vault/htlc_vault');
-const { shadowSandbox } = require('./src/qvac_engine/state_sandbox');
-const { merkleAuditLogger } = require('./src/wdk_vault/merkle_audit');
-const { localMeshNode } = require('./src/pears_p2p/pears_mesh');
-const { keccak256 } = require('./src/wdk_vault/keccak256');
-const { generateQRCodeSVG } = require('./src/pears_p2p/qr_generator');
+const { qvacEngine } = require('../src/qvac_engine/qvac_auditor');
+const { wdkVault } = require('../src/wdk_vault/wdk_signer');
+const { htlcEngine } = require('../src/wdk_vault/htlc_vault');
+const { shadowSandbox } = require('../src/qvac_engine/state_sandbox');
+const { merkleAuditLogger } = require('../src/wdk_vault/merkle_audit');
+const { localMeshNode } = require('../src/pears_p2p/pears_mesh');
+const { keccak256 } = require('../src/wdk_vault/keccak256');
+const { generateQRCodeSVG } = require('../src/pears_p2p/qr_generator');
 
 async function runTestSuite() {
   console.log('================================================================');

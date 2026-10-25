@@ -12,21 +12,29 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x]
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
 
-    - name: Install Dependencies
-      run: npm ci
+    - name: Syntax & Static Integrity Verification
+      run: |
+        node --check server.js
+        node --check src/qvac_core/engine.js
+        node --check src/wdk_vault/signer.js
+        node --check src/pears_p2p/mesh.js
+        node --check tests/sovereign_stack.test.js
 
-    - name: Run Sovereign 3-Pillar Test Suite
+    - name: Install Runtime Dependencies
+      run: npm install --no-audit --no-fund
+
+    - name: Execute Sovereign 3-Pillar Autonomous Test Suite
       run: npm test

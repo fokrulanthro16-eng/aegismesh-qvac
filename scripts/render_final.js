@@ -10,7 +10,7 @@ const fs = require('fs');
 const ffmpegPath = require('ffmpeg-static');
 
 const projectRoot = path.join(__dirname, '..');
-const audioDir = path.join(projectRoot, 'audio');
+const audioDir = path.join(__dirname, 'audio');
 const recordingsDir = path.join(projectRoot, 'recordings');
 const outputVideo = path.join(projectRoot, 'AegisMesh_QVAC_Official_Demo.mp4');
 

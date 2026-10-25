@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
 
 # Environment & Local Secrets
 .env
@@ -14,9 +13,9 @@ recordings/
 AegisMesh_QVAC_Official_Demo.mp4
 
 # Audio Work Files
-audio/*.wav
-audio/padded_concat_list.txt
-audio/concat_list.txt
+scripts/audio/*.wav
+scripts/audio/padded_concat_list.txt
+scripts/audio/concat_list.txt
 
 # Logs & Temporary Files
 *.log

@@ -7,7 +7,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const durationsPath = path.join(__dirname, '..', 'audio', 'durations.json');
+const durationsPath = path.join(__dirname, 'audio', 'durations.json');
 const durations = JSON.parse(fs.readFileSync(durationsPath, 'utf8'));
 
 const recordingsDir = path.join(__dirname, '..', 'recordings');

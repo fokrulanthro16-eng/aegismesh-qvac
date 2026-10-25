@@ -278,9 +278,6 @@ aegismesh-qvac/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml                     # Sovereign GitHub Actions CI workflow
-├── audio/                             # Synthesized neural voiceover scene tracks
-│   ├── scene1.mp3 ... scene5.mp3
-│   └── durations.json
 ├── docs/
 │   ├── ARCHITECTURE.md                # Institutional architecture & threat model
 │   ├── diagrams/
@@ -299,10 +296,16 @@ aegismesh-qvac/
 │   └── assets/
 │       └── icons.svg                  # Locally bundled SVGs
 ├── scripts/
+│   ├── audio/                         # Synthesized neural voiceover scene tracks
+│   │   ├── scene1.mp3 ... scene5.mp3
+│   │   └── durations.json
+│   ├── automated_browser_verifier.js  # Automated browser E2E stress test
 │   ├── capture_screenshots.js         # Automated Playwright screenshot pipeline
 │   ├── generate_voiceover.py          # Edge-TTS neural voiceover generator
+│   ├── measure_audio.js               # Audio duration measurement tool
 │   ├── record_demo.js                 # Playwright 60 FPS video director
-│   └── render_final.js                # Master FFmpeg CRF 16 video renderer
+│   ├── render_final.js                # Master FFmpeg CRF 16 video renderer
+│   └── test_e2e.js                    # Deep-tech offline test script
 ├── src/
 │   ├── data/
 │   │   ├── offline_threat_intel.json  # 1,400+ threat markers & drainer patterns
@@ -331,6 +334,7 @@ aegismesh-qvac/
 ├── Dockerfile                         # Multi-stage lightweight Node 20 Alpine
 ├── docker-compose.yml
 ├── LICENSE                            # MIT License Copyright 2026
+├── package-lock.json                  # Deterministic dependency lock
 ├── package.json
 ├── README.md                          # Flagship institutional documentation
 ├── SECURITY.md                        # Cryptographic security & air-gap policy

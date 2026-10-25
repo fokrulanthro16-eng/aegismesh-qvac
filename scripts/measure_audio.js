@@ -3,7 +3,7 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 const ffmpeg = require('ffmpeg-static');
 
-const audioDir = path.join(__dirname, '..', 'audio');
+const audioDir = path.join(__dirname, 'audio');
 const files = ['scene1.mp3', 'scene2.mp3', 'scene3.mp3', 'scene4.mp3', 'scene5.mp3'];
 
 const durations = {};

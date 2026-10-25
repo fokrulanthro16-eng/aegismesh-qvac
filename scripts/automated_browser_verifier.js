@@ -21,7 +21,7 @@ async function runLiveVerification() {
   // STEP 1: ZERO EXTERNAL CDN & HARD AIR-GAP AUDIT
   // --------------------------------------------------------------------------
   console.log('🔍 [CHECK 1/8] ZERO-EXTERNAL-CDN & STATIC AIR-GAP AUDIT');
-  const publicDir = path.join(__dirname, 'public');
+  const publicDir = path.join(__dirname, '..', 'public');
   const filesToScan = ['index.html', 'styles.css', 'app.js'];
 
   for (const file of filesToScan) {
