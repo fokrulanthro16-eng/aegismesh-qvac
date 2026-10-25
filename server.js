@@ -20,54 +20,63 @@ const { generateQRCodeSVG } = require('./src/pears_p2p/qr_generator');
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocketServer({ server, path: '/mesh' });
-
-app.use(express.json({ limit: '10mb' }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 // In-memory broadcast queue for deferred online sync
 const deferredRpcBroadcastQueue = [];
 
-// WebSocket mesh connections
+// WebSocket mesh connections (initialized only in persistent local/server environments)
+let wss = null;
 const activeClients = new Set();
-wss.on('connection', (ws) => {
-  activeClients.add(ws);
-  ws.send(JSON.stringify({
-    type: 'PEARS_WELCOME',
-    nodeId: localMeshNode.nodeId,
-    status: 'CONNECTED_OFFLINE_MESH',
-    clientCount: activeClients.size
-  }));
 
-  ws.on('message', (message) => {
-    try {
-      const data = JSON.parse(message.toString());
-      if (data.type === 'PEARS_VOUCHER_BROADCAST') {
-        localMeshNode.receivePeerSync(data);
-        // Relay to all other connected tabs / local nodes
-        for (const client of activeClients) {
-          if (client !== ws && client.readyState === 1) {
-            client.send(JSON.stringify(data));
+if (!process.env.VERCEL) {
+  try {
+    wss = new WebSocketServer({ server, path: '/mesh' });
+    wss.on('connection', (ws) => {
+      activeClients.add(ws);
+      ws.send(JSON.stringify({
+        type: 'PEARS_WELCOME',
+        nodeId: localMeshNode.nodeId,
+        status: 'CONNECTED_OFFLINE_MESH',
+        clientCount: activeClients.size
+      }));
+
+      ws.on('message', (message) => {
+        try {
+          const data = JSON.parse(message.toString());
+          if (data.type === 'PEARS_VOUCHER_BROADCAST') {
+            localMeshNode.receivePeerSync(data);
+            // Relay to all other connected tabs / local nodes
+            for (const client of activeClients) {
+              if (client !== ws && client.readyState === 1) {
+                client.send(JSON.stringify(data));
+              }
+            }
           }
+        } catch (e) {
+          console.warn('WS Message error:', e.message);
         }
-      }
-    } catch (e) {
-      console.warn('WS Message error:', e.message);
-    }
-  });
+      });
 
-  ws.on('close', () => {
-    activeClients.delete(ws);
-  });
-});
+      ws.on('close', () => {
+        activeClients.delete(ws);
+      });
+    });
+  } catch (err) {
+    console.warn('WebSocket init skipped or running in serverless environment:', err.message);
+  }
+}
 
 function broadcastToMesh(packet) {
+  if (!wss) return;
   for (const client of activeClients) {
     if (client.readyState === 1) {
       client.send(JSON.stringify(packet));
     }
   }
 }
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 1. Health & Offline State
 app.get('/api/health', (req, res) => {
@@ -441,12 +450,27 @@ app.post('/api/queue/simulate-broadcast', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`================================================================`);
-  console.log(`⚡ AegisMesh QVAC - Sovereign Air-Gapped AI Multisig Co-Signer`);
-  console.log(`🔒 Offline Engine running at: http://127.0.0.1:${PORT}`);
-  console.log(`🚀 Hardware: Intel Core i5-1155G7 @ 2.50GHz | Iris Xe Graphics`);
-  console.log(`🌐 Wi-Fi Status: Hardware Air-Gap Ready (Zero External CDNs)`);
-  console.log(`================================================================`);
+// SPA & Static Fallback Route: Guarantees zero 404s for frontend page reloads or client navigation
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api')) {
+    return res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  }
+  next();
 });
+
+// Standalone execution entrypoint (runs in local/Docker/CI, skipped in Vercel Serverless Functions)
+if (require.main === module && !process.env.VERCEL) {
+  const PORT = process.env.PORT || 3000;
+  const HOST = process.env.HOST || '0.0.0.0';
+  server.listen(PORT, HOST, () => {
+    console.log(`================================================================`);
+    console.log(`⚡ AegisMesh QVAC - Sovereign Air-Gapped AI Multisig Co-Signer`);
+    console.log(`🔒 Engine running at: http://${HOST}:${PORT}`);
+    console.log(`🚀 Hardware: Intel Core i5-1155G7 @ 2.50GHz | Iris Xe Graphics`);
+    console.log(`🌐 Wi-Fi Status: Hardware Air-Gap Ready (Zero External CDNs)`);
+    console.log(`================================================================`);
+  });
+}
+
+// Export Express app as request handler for Vercel Serverless Function runtime
+module.exports = app;

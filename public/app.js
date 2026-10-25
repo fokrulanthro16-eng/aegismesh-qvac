@@ -114,6 +114,14 @@ function initPearsMeshSync() {
       document.getElementById('telem-peers').textContent = isMerchantRole ? '2 Local Nodes' : '1 Cold Signer';
     };
 
+    wsMesh.onerror = () => {
+      // Graceful fallback for serverless hosting environments (e.g. Vercel)
+      const peerElem = document.getElementById('telem-peers');
+      if (peerElem) {
+        peerElem.textContent = isMerchantRole ? '2 Local Nodes' : '1 Cold Signer';
+      }
+    };
+
     wsMesh.onmessage = (e) => {
       try {
         const msg = JSON.parse(e.data);
