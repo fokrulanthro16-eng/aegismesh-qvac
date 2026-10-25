@@ -1,0 +1,10 @@
+node_modules
+recordings
+docs/screenshots
+.git
+.github
+*.mp4
+*.webm
+*.log
+.env
+.env.*

@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment & Local Secrets
+.env
+.env.*
+*.local
+
+# Heavy Video Recordings (Exceeds GitHub 100MB limit)
+*.mp4
+*.webm
+recordings/
+AegisMesh_QVAC_Official_Demo.mp4
+
+# Audio Work Files
+audio/*.wav
+audio/padded_concat_list.txt
+audio/concat_list.txt
+
+# Logs & Temporary Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.system_generated/
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Ensure Screenshots and SVG Diagrams ARE Tracked
+!docs/screenshots/*.png
+!docs/diagrams/*.svg

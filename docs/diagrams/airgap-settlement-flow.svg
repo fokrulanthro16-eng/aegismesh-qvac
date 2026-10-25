@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07090E" />
+      <stop offset="100%" stop-color="#0D1117" />
+    </linearGradient>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0891B2" />
+      <stop offset="100%" stop-color="#06B6D4" />
+    </linearGradient>
+    <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 24px; font-weight: 800; fill: #FFFFFF; }
+    .subtitle { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; fill: #10B981; letter-spacing: 1px; }
+    .node-header { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 700; }
+    .node-sub { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; fill: #94A3B8; }
+    .msg-text { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-weight: 600; fill: #E2E8F0; }
+    .msg-sub { font-family: 'SF Mono', Consolas, monospace; font-size: 10px; fill: #94A3B8; }
+    .badge { font-family: 'SF Mono', Consolas, monospace; font-size: 10px; font-weight: 700; }
+    .zone-label { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1200" height="680" fill="url(#bgGrad)" />
+  <rect x="20" y="20" width="1160" height="640" rx="16" fill="#0B0F17" stroke="#1E293B" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(60, 60)">
+    <circle cx="18" cy="18" r="16" fill="url(#cyanGrad)" opacity="0.2" />
+    <path d="M12 18 L16 22 L24 14" stroke="#06B6D4" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="45" y="16" class="title">AegisMesh QVAC: Air-Gap Settlement Flow</text>
+    <text x="45" y="34" class="subtitle">PHYSICALLY AIR-GAPPED DEVICE A (OFFLINE SIGNER) TO DEVICE B (ONLINE RELAY NODE)</text>
+  </g>
+
+  <!-- Security Zones -->
+  <!-- Zone 1: Offline Sovereign Enclave -->
+  <rect x="60" y="105" width="520" height="520" rx="12" fill="#064E3B" fill-opacity="0.08" stroke="#059669" stroke-width="1.2" stroke-dasharray="6,4" />
+  <rect x="75" y="115" width="280" height="24" rx="4" fill="#064E3B" />
+  <text x="85" y="131" class="zone-label" fill="#6EE7B7">ZONE 1: AIR-GAPPED SIGNER (0.0 KB/s RF)</text>
+
+  <!-- Zone 2: Zero-RF Air-Gap Transport -->
+  <rect x="595" y="105" width="230" height="520" rx="12" fill="#7C3AED" fill-opacity="0.06" stroke="#7C3AED" stroke-width="1.2" stroke-dasharray="6,4" />
+  <rect x="605" y="115" width="210" height="24" rx="4" fill="#4C1D95" />
+  <text x="615" y="131" class="zone-label" fill="#C084FC">ZONE 2: OPTICAL / PEARS P2P</text>
+
+  <!-- Zone 3: Online Broadcast Relay -->
+  <rect x="840" y="105" width="300" height="520" rx="12" fill="#0369A1" fill-opacity="0.08" stroke="#0284C7" stroke-width="1.2" stroke-dasharray="6,4" />
+  <rect x="855" y="115" width="240" height="24" rx="4" fill="#0C4A6E" />
+  <text x="865" y="131" class="zone-label" fill="#7DD3FC">ZONE 3: EVM RELAY (ON-CHAIN)</text>
+
+  <!-- Actor Columns Lifelines -->
+  <!-- Actor 1: Human User -->
+  <line x1="160" y1="180" x2="160" y2="590" stroke="#334155" stroke-width="2" stroke-dasharray="4,4" />
+  <!-- Actor 2: QVAC AI Guardian Enclave -->
+  <line x1="330" y1="180" x2="330" y2="590" stroke="#10B981" stroke-width="2" stroke-dasharray="4,4" />
+  <!-- Actor 3: Tether WDK Cold Vault -->
+  <line x1="490" y1="180" x2="490" y2="590" stroke="#06B6D4" stroke-width="2" stroke-dasharray="4,4" />
+  <!-- Actor 4: Optical QR / Pears Mesh -->
+  <line x1="710" y1="180" x2="710" y2="590" stroke="#A855F7" stroke-width="2" stroke-dasharray="4,4" />
+  <!-- Actor 5: Online Relay & EVM Network -->
+  <line x1="990" y1="180" x2="990" y2="590" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4,4" />
+
+  <!-- Actor Headers -->
+  <g transform="translate(90, 150)">
+    <rect width="140" height="42" rx="8" fill="#1E293B" stroke="#475569" />
+    <text x="70" y="22" class="node-header" text-anchor="middle" fill="#FFFFFF">User Operator</text>
+    <text x="70" y="36" class="node-sub" text-anchor="middle">NL Prompt / Trade</text>
+  </g>
+
+  <g transform="translate(260, 150)">
+    <rect width="140" height="42" rx="8" fill="#064E3B" stroke="#10B981" />
+    <text x="70" y="22" class="node-header" text-anchor="middle" fill="#10B981">QVAC Local AI</text>
+    <text x="70" y="36" class="node-sub" text-anchor="middle">Intel Iris Xe / VNNI</text>
+  </g>
+
+  <g transform="translate(420, 150)">
+    <rect width="140" height="42" rx="8" fill="#083344" stroke="#06B6D4" />
+    <text x="70" y="22" class="node-header" text-anchor="middle" fill="#06B6D4">WDK Cold Vault</text>
+    <text x="70" y="36" class="node-sub" text-anchor="middle">BIP-44 / HTLC Escrow</text>
+  </g>
+
+  <g transform="translate(640, 150)">
+    <rect width="140" height="42" rx="8" fill="#3B0764" stroke="#A855F7" />
+    <text x="70" y="22" class="node-header" text-anchor="middle" fill="#C084FC">Air-Gap Bridge</text>
+    <text x="70" y="36" class="node-sub" text-anchor="middle">Optical QR / Pears</text>
+  </g>
+
+  <g transform="translate(920, 150)">
+    <rect width="140" height="42" rx="8" fill="#082F49" stroke="#38BDF8" />
+    <text x="70" y="22" class="node-header" text-anchor="middle" fill="#38BDF8">EVM Network</text>
+    <text x="70" y="36" class="node-sub" text-anchor="middle">Smart Contract / USDt</text>
+  </g>
+
+  <!-- Sequence Messages -->
+  <!-- Step 1: User -> QVAC -->
+  <g transform="translate(0, 220)">
+    <line x1="160" y1="0" x2="330" y2="0" stroke="#E2E8F0" stroke-width="2" />
+    <polygon points="325,-4 335,0 325,4" fill="#E2E8F0" />
+    <text x="245" y="-10" class="msg-text" text-anchor="middle">1. "Lock 1,250 USDt in Escrow" (EN/SW)</text>
+    <text x="245" y="14" class="msg-sub" text-anchor="middle">Zero Internet / Local Ingestion</text>
+  </g>
+
+  <!-- Step 2: QVAC Internal Processing -->
+  <g transform="translate(330, 260)">
+    <rect x="-15" y="0" width="160" height="48" rx="6" fill="#064E3B" stroke="#059669" />
+    <text x="65" y="18" class="msg-text" text-anchor="middle" fill="#6EE7B7">2. Offline Neural Audit</text>
+    <text x="65" y="32" class="msg-sub" text-anchor="middle" fill="#A7F3D0">• Decompile 0xa9059cbb</text>
+    <text x="65" y="44" class="msg-sub" text-anchor="middle" fill="#A7F3D0">• Threat Radar: 0/100 (SAFE)</text>
+  </g>
+
+  <!-- Step 3: QVAC -> WDK Vault -->
+  <g transform="translate(0, 335)">
+    <line x1="330" y1="0" x2="490" y2="0" stroke="#10B981" stroke-width="2" />
+    <polygon points="485,-4 495,0 485,4" fill="#10B981" />
+    <text x="410" y="-10" class="msg-text" text-anchor="middle" fill="#10B981">3. Grant AI Guardian Authorization</text>
+    <text x="410" y="14" class="msg-sub" text-anchor="middle">Reasoning Trace Hash Appended</text>
+  </g>
+
+  <!-- Step 4: WDK Vault Internal Co-Signing -->
+  <g transform="translate(490, 370)">
+    <rect x="-15" y="0" width="165" height="48" rx="6" fill="#083344" stroke="#06B6D4" />
+    <text x="67" y="18" class="msg-text" text-anchor="middle" fill="#67E8F9">4. 2-of-2 Dual Co-Signing</text>
+    <text x="67" y="32" class="msg-sub" text-anchor="middle" fill="#A5F3FC">• secp256k1 (v, r, s) tuples</text>
+    <text x="67" y="44" class="msg-sub" text-anchor="middle" fill="#A5F3FC">• Append to Merkle Audit Tree</text>
+  </g>
+
+  <!-- Step 5: WDK Vault -> Optical QR / Pears Mesh -->
+  <g transform="translate(0, 445)">
+    <line x1="490" y1="0" x2="710" y2="0" stroke="#06B6D4" stroke-width="2" />
+    <polygon points="705,-4 715,0 705,4" fill="#06B6D4" />
+    <text x="600" y="-10" class="msg-text" text-anchor="middle" fill="#38BDF8">5. Stream Dual-Signed Voucher</text>
+    <text x="600" y="14" class="msg-sub" text-anchor="middle">High-Density SVG QR / P2P Swarm Packet</text>
+  </g>
+
+  <!-- Step 6: Optical QR Bridge -> Online Relay -->
+  <g transform="translate(0, 500)">
+    <line x1="710" y1="0" x2="990" y2="0" stroke="#A855F7" stroke-width="2.5" stroke-dasharray="6,4" />
+    <polygon points="985,-4 995,0 985,4" fill="#A855F7" />
+    <text x="850" y="-10" class="msg-text" text-anchor="middle" fill="#C084FC">6. Air-Gap Crossing: Camera Scan / Pears P2P</text>
+    <text x="850" y="14" class="msg-sub" text-anchor="middle">Physical Optical Isolation Maintained</text>
+  </g>
+
+  <!-- Step 7: Online Relay -> EVM Smart Contract -->
+  <g transform="translate(0, 555)">
+    <line x1="990" y1="0" x2="1100" y2="0" stroke="#38BDF8" stroke-width="2" />
+    <polygon points="1095,-4 1105,0 1095,4" fill="#38BDF8" />
+    <text x="1045" y="-10" class="msg-text" text-anchor="middle" fill="#38BDF8">7. Broadcast Tx</text>
+    <text x="1045" y="14" class="msg-sub" text-anchor="middle">On-Chain Settlement</text>
+  </g>
+
+</svg>

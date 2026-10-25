@@ -1,0 +1,94 @@
+{
+  "version": "1.4.0-offline",
+  "last_updated_block": 21000000,
+  "engine": "AegisMesh-Offline-ThreatDB",
+  "known_tokens": {
+    "0xdac17f958d2ee523a2206206994597c13d831ec7": {
+      "symbol": "USDt",
+      "name": "Tether USD",
+      "chain": "Ethereum",
+      "decimals": 6,
+      "verified": true
+    },
+    "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9": {
+      "symbol": "USDt",
+      "name": "Tether USD (Arbitrum)",
+      "chain": "Arbitrum One",
+      "decimals": 6,
+      "verified": true
+    },
+    "0xc2132d05d31c914a87c6611c10748aeb04b58e8f": {
+      "symbol": "USDt",
+      "name": "Tether USD (Polygon)",
+      "chain": "Polygon PoS",
+      "decimals": 6,
+      "verified": true
+    }
+  },
+  "malicious_selectors": {
+    "0x095ea7b3_infinite": {
+      "name": "Infinite Allowance Approval Trap",
+      "selector": "0x095ea7b3",
+      "severity": "CRITICAL",
+      "score": 98,
+      "description": "Blind approval of uint256 max (0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff). Allows spender contract to sweep 100% of USDt balance at any point."
+    },
+    "0xac9650d8": {
+      "name": "Obfuscated Multicall Drainer",
+      "selector": "0xac9650d8",
+      "severity": "HIGH",
+      "score": 85,
+      "description": "Bundled calldata attempting unverified nested calls bypassing user signature checks."
+    },
+    "0x1cff79cd": {
+      "name": "Phishing Proxy Sweeper",
+      "selector": "0x1cff79cd",
+      "severity": "CRITICAL",
+      "score": 95,
+      "description": "Arbitrary external execution pattern commonly used in Pink/Inferno drainers."
+    }
+  },
+  "known_drainer_addresses": [
+    "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+    "0x000000000000000000000000000000000000dead",
+    "0xbadc0de00000000000000000000000000000bad1",
+    "0x999999cf1046e68e36e1aa2e0e07105eddd840bd",
+    "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984_spoof"
+  ],
+  "address_poisoning_db": [
+    {
+      "target_prefix": "0x71c8",
+      "target_suffix": "e667",
+      "legitimate": "0x71c8364437a9238f156d600934e0a35c2317e667",
+      "poison_clone": "0x71c899999999999999999999999999999999e667",
+      "severity": "CRITICAL",
+      "warning": "Address Poisoning Detected: Spoofed address mimics legitimate recipient prefix and suffix to trick copy-paste history."
+    }
+  ],
+  "sanctioned_entities": [
+    {
+      "address": "0x8576acc5c05d6ce88f4e49bf65bdf0c62f91353c",
+      "label": "Tornado Cash Router (OFAC Sanctioned)",
+      "risk": 100
+    },
+    {
+      "address": "0x1da5821544e25c636c1417ba96ade4cf6d2f9b5a",
+      "label": "Lazarus Phishing Sweeper Cluster",
+      "risk": 100
+    }
+  ],
+  "verified_counterparties": [
+    {
+      "address": "0x71c8364437a9238f156d600934e0a35c2317e667",
+      "label": "Verified Industrial Hardware Supplier (Global)",
+      "trust_tier": "TIER_1_VERIFIED",
+      "risk_discount": -10
+    },
+    {
+      "address": "0xa4b1626027a696ee867056637efee9cb649980d9",
+      "label": "Mama Mboga Agro-Wholesaler (Nairobi Eastleigh Hub)",
+      "trust_tier": "TIER_1_VERIFIED",
+      "risk_discount": -15
+    }
+  ]
+}

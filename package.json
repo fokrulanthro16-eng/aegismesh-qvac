@@ -1,0 +1,32 @@
+{
+  "name": "aegismesh-qvac",
+  "version": "1.0.0",
+  "description": "Sovereign Air-Gapped AI Multisig Co-Signer, EVM Bytecode Disassembler & P2P Offline Settlement Engine for Tether AI Yako Hackathon",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node tests/sovereign_stack.test.js",
+    "screenshots": "node scripts/capture_screenshots.js"
+  },
+  "keywords": [
+    "tether",
+    "qvac",
+    "wdk",
+    "pears",
+    "offline-ai",
+    "multisig",
+    "evm-disassembler",
+    "air-gap",
+    "eip-712",
+    "htlc"
+  ],
+  "author": "AegisMesh Sovereign Architect",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.3.0",
+    "ffmpeg-static": "^5.3.0",
+    "playwright": "^1.64.1",
+    "ws": "^8.22.0"
+  }
+}

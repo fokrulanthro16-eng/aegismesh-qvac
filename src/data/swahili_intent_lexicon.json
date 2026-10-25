@@ -1,0 +1,33 @@
+{
+  "language": "sw-KE",
+  "version": "1.0.0",
+  "name": "Swahili AI Yako Lexicon",
+  "intents": {
+    "TRANSFER": ["tuma", "peleka", "toa", "lipa"],
+    "ESCROW_LOCK": ["weka rehani", "weka escrow", "weka amana", "hifadhi kwa usalama", "funga"],
+    "APPROVE": ["idhinisha", "kubali", "ruhusu"],
+    "P2P_SETTLEMENT": ["suluhisha", "kamilisha biashara", "kamilisha malipo"]
+  },
+  "entities": {
+    "currency": ["usdt", "usd", "tether", "dola"],
+    "recipient_markers": ["kwa", "kwa mfanyabiashara", "kwa muuzaji", "kwa ajili ya", "kwa anwani"],
+    "timelock_markers": ["saa", "masaa", "muda wa saa", "muda wa masaa"],
+    "safety_markers": ["kwa usalama", "kwa ulinzi", "bila mtandao", "offline"],
+    "condition_markers": ["baada ya uthibitisho wa ankara", "baada ya kupokea bidhaa", "baada ya ukaguzi"]
+  },
+  "sample_utterances": [
+    {
+      "text": "Tuma 50 USDt kwa mfanyabiashara 0x71C8364437a9238f156d600934E0a35c2317E667 kwa usalama",
+      "expected_action": "ESCROW_LOCK",
+      "expected_amount": 50,
+      "expected_recipient": "0x71c8364437a9238f156d600934e0a35c2317e667"
+    },
+    {
+      "text": "Weka rehani 120 USDt kwa masaa 24 kwa muuzaji 0xa4b1626027a696ee867056637efee9cb649980d9 baada ya uthibitisho wa ankara",
+      "expected_action": "ESCROW_LOCK",
+      "expected_amount": 120,
+      "expected_timelock_hours": 24,
+      "expected_recipient": "0xa4b1626027a696ee867056637efee9cb649980d9"
+    }
+  ]
+}

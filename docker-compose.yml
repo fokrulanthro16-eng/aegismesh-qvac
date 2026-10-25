@@ -1,0 +1,25 @@
+services:
+  aegismesh-qvac:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aegismesh-qvac:latest
+    container_name: aegismesh_qvac_core
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    deploy:
+      resources:
+        limits:
+          memory: 250M
+          cpus: '1.0'
+        reservations:
+          memory: 50M
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
